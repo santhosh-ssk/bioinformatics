@@ -16,7 +16,7 @@ $.ajax({
 var dna_sequence=[];
 for(var i=0;i<json.length;i++)
 dna_sequence[i]=json[i]["name"];
-window.alert(dna_sequence);
+window.alert("welcome");
 var input = document.getElementById("serachval");
 var awesomplete=new Awesomplete(input, {list:dna_sequence,
 minChars:1

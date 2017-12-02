@@ -1,11 +1,11 @@
 function novalfast(data){
-		     alert(data);
+		     //alert(data);
 		     data=data.split('>');
 		
 		data=data.slice(1,data.length);
 		
 		n=data.length;
-		alert(data.length);
+		//alert(data.length);
 		label=[]
 		N=[]
 		M=[];
@@ -199,7 +199,7 @@ function novalfastdata(sequences){
 		}
 
 function phylogenitictree(treedata){
-	alert(treedata);
+	//alert(treedata);
 	var dataObject = { newick: treedata+';' };
 			phylocanvas = new Smits.PhyloCanvas(
 				dataObject,

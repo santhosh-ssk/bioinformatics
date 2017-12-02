@@ -17,8 +17,8 @@ function needleman(data){
 		seq1=data[0].slice(pos,data[0].length);
 		pos=data[1].indexOf('\n');
 		seq2=data[1].slice(pos,data[1].length);
-		alert(seq1);
-		alert(seq2);
+		//alert(seq1);
+		//alert(seq2);
 		var seq1_len=seq1.length;
 		var seq2_len=seq2.length;
 
@@ -75,8 +75,8 @@ function needleman(data){
 				m=m-1;
 			}
 		}
-		alert(alignmentA);
-		alert(alignmentB);
+		//alert(alignmentA);
+		//alert(alignmentB);
 		DNAGraph(alignmentA,alignmentB);
 		var alignmentAlen=alignmentA.length;
 		for(var i=0;i<alignmentAlen/50;i++)

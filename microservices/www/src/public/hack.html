@@ -19,7 +19,7 @@
   <script type="text/javascript" src="./jsphylosvg/jsphylosvg-min.js"></script> 
   <script type="text/javascript">
 function gene_detailfasta(gene_id){
-          //alert(gene_id);
+         // alert(gene_id);
           //$("#fastadisp").hide();
           $.post('https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=sequences&id='+gene_id+'&rettype=fasta&retmode=text',function(data){
 
@@ -31,7 +31,7 @@ function gene_detailfasta(gene_id){
           return true;
         }
     function gene_detailgb(gene_id){
-          //alert(gene_id);
+        //  alert(gene_id);
          // $("#accdisp").hide();
           $.post('https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id='+gene_id+'&rettype=gb&retmode=text',function(data){
               //window.alert(data);
@@ -89,6 +89,7 @@ if(choice=="name")
 }).done(function(json) {
 //window.alert("before");
 //window.alert(json[0]["acc_no"]);
+//window.alert("welcome");
 gene_sum(json[0]["acc_no"]);
   // Handle Response
 }).fail(function(xhr, status, errorThrown) {
