@@ -125,7 +125,7 @@ else gene_detail(name1);
   var val=document.getElementById("serachbyacc1").value;
   var val1=document.getElementById("serachbyseq1").value;
   //window.alert(val);
-  //window.alert(val1);
+  window.alert(val1);
   if(val!=""&&val1=="")
   {
   needlemandata(val);
@@ -162,9 +162,10 @@ function id_def(genes){
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.css">
 </head>
 <body>
-<header><h1>Bio-Informatics</h1></header>
+<header><center><h1 style="background-color: lightblue;font-size: 50px">Bio-Informatics</h1></header>
 
-<div class="contanier" id="cont1">
+<div class="contanier" id="cont1" style="margin-left: 100px">
+<br><br>
 <div class ="row">
 <div class ="col-sm-6">
 <select id="selectname" onchange="changed()">
@@ -185,17 +186,17 @@ function id_def(genes){
 </div>
 <div class ="row" id="gbf">
 <div class ="col-sm-6" id="gbdisp">
-<h4>GB</h4>
+<h4>GenBank Result</h4>
 </div>
 <div class ="col-sm-6" id="fastadisp">
-<h4>FASTA</h4>
+<h4>FASTA(GENOME sequence)</h4>
 </div>
 </div>
 </div>
-<div class="contanier" id="cont2">
+<div class="contanier" id="cont2" style="margin-left: 100px">
 <div class ="row">
 <div class ="col-sm-6">
-<h3>Compare by Acc_no/Sequence</h3>
+<h3>Compare by Association number </h3>
 <input type="text" id="serachbyacc">
 <br>
 </div>
@@ -210,15 +211,12 @@ function id_def(genes){
 </div>
 </div>
 <div class ="row">
-<div class ="col-sm-6" id="iddes">
-<h3>id description</h3>
-</div>
-<div class ="col-sm-6" id="treearea">
+<div class ="col-sm-12" id="treearea">
 <h3>Phylogentic Tree</h3>
 </div>
 </div>
 </div>
-<div class="contanier" id="cont3">
+<div class="contanier" id="cont3" style="margin-left: 100px">
 <div class ="row">
 <div class ="col-sm-6">
 <h3>Compare by Acc_no/Sequence</h3>
@@ -231,6 +229,7 @@ function id_def(genes){
 </div>
 </div>
 <div class ="row">
+<h1>Visual representation of two sequences</h1>
 <div class ="col-sm-12" id="DNAgraph">
   <canvas id="graphdisp" height="300" width="1500"></canvas>
 
