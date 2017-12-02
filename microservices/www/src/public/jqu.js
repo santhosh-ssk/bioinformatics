@@ -11,6 +11,7 @@ $("#cont3").hide();
 	$("#sr").show();
 	$("#gbf").show();
 });
+
 $("#FOGSAA").click(function(){
 	$("#sr").hide();
     $("#gbf").hide();
