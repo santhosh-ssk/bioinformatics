@@ -11,6 +11,7 @@ function novalfast(data){
 		M=[];
 		D2=[];
 		result=data;
+		idlabeldata=""
 		for(var i=0;i<n;i++)
 			{
 			data=result[i];
@@ -31,6 +32,7 @@ function novalfast(data){
 	  		pos=data.indexOf('\n');
 	  		title=data.slice(0,pos);
 	  		label[i]=title.split(' ')[0]
+	  		idlabeldata=idlabeldata+title.split(' ')[0]+","
 	  		data=data.slice(pos,data.length);
 			
 			$("#page").append(data+"<br><br>");	  		
@@ -100,105 +102,8 @@ function novalfast(data){
 	  				
 	  		}
 	  		process();
-data=data.split('>');
-		
-		data=data.slice(1,data.length);
-		
-		n=data.length;
-		//alert(data.length);
-		
-		N=[]
-		M=[];
-		D2=[];
-		result=data;
-		for(var i=0;i<n;i++)
-			{
-			data=result[i];
-
-		
-			N[i]=[];
-			for(var j=0;j<6;j++)
-				N[i][j]=0;
-			
-			M[i]=[]
-			for(var j=0;j<6;j++)
-				M[i][j]=0;
-			
-			D2[i]=[];
-			for(var j=0;j<6;j++)
-				D2[i][j]=0; 
-
-	  		pos=data.indexOf('\n');
-	  		title=data.slice(0,pos);
-	  		data=data.slice(pos,data.length);
-			
-			$("#page").append(data+"<br><br>");	  		
-	  		//data=genes[i];
-	  		
-	  		
-	  		//$("#page").append(data);
-	  		
-	  			for(var k=0;k<data.length;k++){
-	  				//$("#page").append(data[k]);
-	  				//alert(N[i,0]);
-	  					if(data[k]=='A'|| data[k]=='G')
-	  						{
-	  							N[i][0]++;
-	  							M[i][0]+=k;
-	  						}
-	  					else
-	  						{
-	  							N[i][1]++;
-	  							M[i][1]++
-	  						}
-
-	  					if(data[k]=='A'||data[k]=='C')
-	  						{
-	  							N[i][2]++;
-	  							M[i][2]+=k;
-	  						}
-	  					else
-	  						{
-	  							N[i][3]++;
-	  							M[i][3]+=k;
-	  						}
-
-	  					if(data[k]=='G'||data[k]=='T')
-	  						{
-	  							N[i][4]++;
-	  							M[i][4]+=k;
-	  						}
-	  					else
-	  						{
-	  							N[i][5]++;
-	  							M[i][5]+=k;
-	  						}
-
-	  				}
-	  		for(var j=0;j<6;j++)
-	  			M[i][j]/=N[i][j]
-	  		
-	  			//$("#page").append("<br>");
-	  		
-	  			for(var k=0;k<data.length;k++)
-	  			{
-	  				if(data[k]=='A'|| data[k]=='G')
-	  					D2[i][0]=(k-M[i][0])*(k-M[i][0])
-	  				else
-	  					D2[i][1]=(k-M[i][1])*(k-M[i][1])
-
-	  				if(data[k]=='A'||data[k]=='C')
-						D2[i][2]=(k-M[i][2])*(k-M[i][2])
-					else
-						D2[i][3]=(k-M[i][3])*(k-M[i][3])	  					     
-	  					D2[i][5]=(k-M[i][5])*(k-M[i][5])
-	  			}
-	  	
-	  		for(var j=0;j<6;j++)
-	  			D2[i][j]=D2[i][j]/(N[i][j]*n);
-	  				
-	  		}
-	  		process();
+	  		idlabeldata=idlabeldata.slice(0,idlabeldata.length-1);
+	  		id_label(idlabeldata);
 
 }
 function process(){
@@ -282,7 +187,8 @@ function process(){
 		return label[0];
 	}
 	result=upgma();
-	alert(result.slice(0,result.length));
+	result=result.slice(0,result.length);
+	phylogenitictree(result);
 	
 }
 function novalfastdata(sequences){
@@ -294,6 +200,32 @@ function novalfastdata(sequences){
 			});
 		}
 
+function phylogenitictree(treedata){
+	alert(treedata);
+	var dataObject = { newick: treedata+';' };
+			phylocanvas = new Smits.PhyloCanvas(
+				dataObject,
+				'treearea', 
+				500, 500
+			);
 
+}
+function id_label(idlabel){
+	alert(idlabel);
+	n=idlabel.label;
+	alert('https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=nucleotide&id='+idlabel+'&retmode=json');
+		     $.post('https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=nucleotide&id='+idlabel+'&retmode=json',function(iddata){
+		     	
+		     	//alert(typeof(iddata));
+		     	idlabel=idlabel.split(',');
+
+              for(i=0;i<idlabel.length;i++){
+              	treeiddata="<b>"+idlabel[i]+"</b>:&emsp;&emsp;"+iddata['result'][iddata['result']['uids'][i]]['title']+"<br>";
+                $("#id_def").append(treeiddata)
+               	//$("#id_def").append('<b>NZ_CDNC01000037.1</b>:&emsp;&emsp;Treponema phagedenis strain V1, whole genome shotgun sequence<br>');
+               	//$("#id_def").append('<p>hi</p>')
+               }
+			  });
+}
 	
 	

@@ -7,10 +7,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="jqu.js"></script>
 <script src="search_engine.js"></script>
+
+  
   <script src="novalfast_algorith.js"></script>
+  <script type="text/javascript" src="./jsphylosvg/raphael-min.js" ></script> 
+  <script type="text/javascript" src="./jsphylosvg/jsphylosvg-min.js"></script> 
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.css">
 </head>
-<body onload="return novalfastdata('NZ_MUGQ01000017.1,NZ_MUGQ01000019.1,NZ_CP014822.1,NZ_CP014823.1,NZ_CP014824.1,NZ_CP014825.1')">
+<body>
 <header><h1>Bio-Informatics</h1></header>
 <div class="contanier" id="cont1">
 <div class ="row">
@@ -47,23 +51,24 @@
 <input type="text" id="serachbyacc">
 <br>
 </div>
-<div class ="col-sm-6">
-<h3>Compare by name</h3>
-<input type="text" id="serachbyn1">
-<input type="text" id="serachbyn2">
-<input type="button" id="add" value="add">
-<input type="button" id="compare" value="compare">
-</div>
 </div>
 <div class ="row">
 <div class ="col-sm-6">
+<br>
 <textarea rows="4" cols="40" id="serachbyseq">
 </textarea>
+<br>
+<input type="button" id="valid" value="submit" onclick="validate()">
 </div>
 </div>
 <div class ="row">
-<div class ="col-sm-12">
+<div class="col-sm-6" id="id_def">
+  
+</div>
 <h3>Phylogentic Tree</h3>
+<div class ="col-sm-6" id="treearea">
+
+
 </div>
 </div>
 </div>
@@ -71,7 +76,7 @@
 <div class ="row">
 <div class ="col-sm-6">
 <h3>Compare by Acc_no/Sequence</h3>
-<input type="text" id="serachbyacc">
+<input type="text" id="serachbyacc1">
 <br>
 </div>
 <div class ="col-sm-6">
@@ -96,6 +101,23 @@
 //$("#searchbox").hide();
 //$("#cont1").append('<input type="button" id="search1" value="search1" onclick="direct_acc()">');
 }*/
+function validate()
+{
+var val=document.getElementById("serachbyacc").value;
+var val1=document.getElementById("serachbyseq").value;
+//window.alert(val);
+//window.alert(val1);
+if(val!=""&&val1=="")
+{
+novalfastdata(val);
+}
+else if(val==""&&val1!="")
+{
+novalfast(val1);
+}
+else
+window.alert("error");
+}
 function gene_detailfasta(gene_id){
           alert(gene_id);
           //$("#fastadisp").hide();
