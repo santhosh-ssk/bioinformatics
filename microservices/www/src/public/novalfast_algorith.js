@@ -101,10 +101,8 @@ function novalfast(data){
 	  			D2[i][j]=D2[i][j]/(N[i][j]*n);
 	  				
 	  		}
+	  		
 	  		process();
-	  		idlabeldata=idlabeldata.slice(0,idlabeldata.length-1);
-	  		id_label(idlabeldata);
-
 }
 function process(){
 	//for(a=0;a<n;a++)
@@ -210,22 +208,3 @@ function phylogenitictree(treedata){
 			);
 
 }
-function id_label(idlabel){
-	alert(idlabel);
-	n=idlabel.label;
-	alert('https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=nucleotide&id='+idlabel+'&retmode=json');
-		     $.post('https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=nucleotide&id='+idlabel+'&retmode=json',function(iddata){
-		     	
-		     	//alert(typeof(iddata));
-		     	idlabel=idlabel.split(',');
-
-              for(i=0;i<idlabel.length;i++){
-              	treeiddata="<b>"+idlabel[i]+"</b>:&emsp;&emsp;"+iddata['result'][iddata['result']['uids'][i]]['title']+"<br>";
-                $("#id_def").append(treeiddata)
-               	//$("#id_def").append('<b>NZ_CDNC01000037.1</b>:&emsp;&emsp;Treponema phagedenis strain V1, whole genome shotgun sequence<br>');
-               	//$("#id_def").append('<p>hi</p>')
-               }
-			  });
-}
-	
-	
