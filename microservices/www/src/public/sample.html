@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hi</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+	<script type="text/javascript">
+		 
+		function start()
+		{
+		
+
+//https://github.com/chartjs/Chart.js/issues/2958#issuecomment-261949718
+
+var ctx = document.getElementById("myChart").getContext("2d");
+
+        var chart = {
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: {
+                    
+                    onComplete: function(animation) {            
+                        var sourceCanvas = this.chart.ctx.canvas;
+                		var copyWidth = this.width + 5;
+                        var copyHeight = this.height + 5;
+               			var targetCtx = document.getElementById("myChartAxis").getContext("2d");
+                		targetCtx.canvas.width = copyWidth;
+                		targetCtx.drawImage(sourceCanvas, 0, 0, copyWidth, copyHeight, 0, 0, copyWidth, copyHeight);
+                		
+                        }
+                }
+      },
+        type: 'bar',
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [
+                {
+                    label: "My First dataset",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [65, 59, 80, 81, 56, 55, 40]
+                }
+            ]
+        }};
+
+   var myLiveChart = new Chart(ctx, chart);
+
+}
+
+	</script>
+
+</head>
+<body onload="start()">
+        <div class="chartWrapper">
+      <div class="chartAreaWrapper">
+        <div class="chartAreaWrapper2">
+            <canvas id="myChart"></canvas>
+        </div>
+      </div>
+        
+        <canvas id="myChartAxis" height="300" width="0"></canvas>
+    </div>
+
+</body>
+</html>

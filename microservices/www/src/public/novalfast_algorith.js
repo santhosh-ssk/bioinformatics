@@ -5,7 +5,7 @@ function novalfast(data){
 		data=data.slice(1,data.length);
 		
 		n=data.length;
-		//alert(data.length);
+		alert(data.length);
 		label=[]
 		N=[]
 		M=[];
@@ -204,8 +204,8 @@ function phylogenitictree(treedata){
 			phylocanvas = new Smits.PhyloCanvas(
 				dataObject,
 				'treearea', 
-				500, 500
+				1200, 5000
 			);
-			
+
 
 }
