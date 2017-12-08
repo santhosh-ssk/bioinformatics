@@ -19,8 +19,8 @@ function needleman(data){
 		seq2=data[1].slice(pos,data[1].length);
 		//alert(seq1);
 		//alert(seq2);
-		var seq1_len=seq1.length;
-		var seq2_len=seq2.length;
+		var seq1_len=seq1.length-2;
+		var seq2_len=seq2.length-2;
 
 		var score=[];
 		for(var i=0;i<seq2_len;i++)
@@ -83,15 +83,41 @@ function needleman(data){
 			{
 				$("#dnasequences").append("<br><br>");
 				
-				for(var j=0;j<50;j++)
-					$("#dnasequences").append(alignmentA[i*100+j]);
+				for(var j=0;j<50;j++){
+					/*if(alignmentA[i*100+j]=='A')
+					$("#dnasequences").append("<span style='color:red'>"+alignmentA[i*100+j]+"/<span>");
+
+				    else if(alignmentA[i*100+j]=='T')
+					$("#dnasequences").append("<span style='color:green'>"+alignmentA[i*100+j]+"/<span>");
+					
+					else if(alignmentA[i*100+j]=='C')
+					$("#dnasequences").append("<span style='color:orange'>"+alignmentA[i*100+j]+"/<span>");
+
+					else if(alignmentA[i*100+j]=='G')
+					$("#dnasequences").append("<span style='color:blue'>"+alignmentA[i*100+j]+"/<span>");
+					else*/
+						$("#dnasequences").append("<b>"+alignmentA[i*100+j]+"</b>");
+
+				}
 				
 				$("#dnasequences").append("<br>");
 				
-				for(var k=0;k<50;k++)
-					$("#dnasequences").append(alignmentB[i*100+k]);
-				
-				
+				for(var k=0;k<50;k++){
+					/*if(alignmentB[i*100+j]=='A')
+					$("#dnasequences").append("<span style='color:red'>"+alignmentB[i*100+j]+"/<span>");
+
+				    else if(alignmentB[i*100+j]=='T')
+					$("#dnasequences").append("<span style='color:green'>"+alignmentBi*100+j]+"/<span>");
+					
+					else if(alignmentB[i*100+j]=='C')
+					$("#dnasequences").append("<span style='color:orange'>"+alignmentB[i*100+j]+"/<span>");
+
+					else if(alignmentB[i*100+j]=='G')
+					$("#dnasequences").append("<span style='color:blue'>"+alignmentB[i*100+j]+"/<span>");
+					else*/
+						$("#dnasequences").append("<b>"+alignmentB[i*100+k]+"</b>");
+
+				}
 			}
 
 }
@@ -141,6 +167,7 @@ function DNAGraph(sequencedata,sequencedata2){
 				            fill:"true"
 				    }
 				var dnachart=$("#graphdisp");
+				//dnachart.canvas.width=1200;
 				//Chart.defaults.global.legend.display = false;
 				var chart=new Chart(dnachart,{
 					type:'line',
@@ -151,7 +178,8 @@ function DNAGraph(sequencedata,sequencedata2){
 						datasets:[
 						graphseq[0],graphseq[1]
 						]
-					},
+					}, 
+				
 					options:{
 
 						scales:{
@@ -174,6 +202,7 @@ function DNAGraph(sequencedata,sequencedata2){
 								}
 							}]
 						}
+
 					}
 				});
 				}
